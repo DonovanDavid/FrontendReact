@@ -1,0 +1,55 @@
+/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sectionHome {
+  background-color: #37517e;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.rigth-Home {
+  flex: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.rigth-Home h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background-color: #fff;
+  color: #111;
+}
+
+.left-Home {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.animated-img {
+  max-width: 100%;
+  height: auto;
+  max-height: 80vh;
+
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(-30px);
+  }
+}

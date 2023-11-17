@@ -1,27 +1,45 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate  } from 'react-router-dom';
 
 import './Login.css'; // Archivo CSS para los estilos
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+  const history = useNavigate();// Obtén la instancia de history
+
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
-  
+
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-  
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos a tu servidor o manejar la autenticación
-    console.log('Username:', username);
-    console.log('Password:', password);
-    // Puedes hacer una petición a tu API, enviar los datos, etc.
+
+    try {
+      const response = await fetch('http://localhost:8080/log/loginautentication', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        // Redirige a la página Crud si el inicio de sesión es exitoso
+        history('/crud');
+      } else {
+        // Maneja la respuesta si hay errores
+        console.error('Error al iniciar sesión');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
-  
+
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
